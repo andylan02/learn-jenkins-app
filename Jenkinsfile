@@ -1,5 +1,10 @@
 pipeline {
     agent any
+     tools {
+        maven 'Maven'
+         jdk  'JDK'
+         nodejs 'node'
+    }
 
     stages {
      
@@ -9,10 +14,10 @@ pipeline {
             steps {
                 sh '''
                     ls -la
-                    /opt/tool/node/bin/node --version
-                    /opt/tool/node/bin/npm --version
-                    /opt/tool/node/bin/npm ci
-                    /opt/tool/node/bin/npm run build
+                    node --version
+                    npm --version
+                    npm ci
+                    npm run build
                     ls -la
                 '''
             }
@@ -25,7 +30,7 @@ pipeline {
             steps {
                 sh '''
                     #test -f build/index.html
-                    /opt/tool/node/bin/npm test
+                    npm test
                 '''
             }
         }
